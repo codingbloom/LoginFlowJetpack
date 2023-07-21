@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1058920350565",
+    "project_id": "loginflowjetpack",
+    "storage_bucket": "loginflowjetpack.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058920350565:android:a5a3d7951b34e3d7d3578c",
+        "android_client_info": {
+          "package_name": "com.codingbloom.loginflowjetpack"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1058920350565-n8d7rb749i8khvjkln8guu8hpbpoidr6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChq91nW4alzH3yc3MbzRnm4NNxHQcZB4M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1058920350565-n8d7rb749i8khvjkln8guu8hpbpoidr6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

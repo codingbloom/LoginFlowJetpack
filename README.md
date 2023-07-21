@@ -1,6 +1,11 @@
 # LoginFlowJetpack
 Practice Login and Register account with firebase in jetpack compose.
 
+## Screenshots
 
-![Screenshot_2023-07-21-10-54-05-75_5df84d53436283af46785041d6e85e3b](https://github.com/codingbloom/LoginFlowJetpack/assets/100596014/71792c3c-6a77-45c1-9a5e-261e3f65a623)
-![Screenshot_2023-07-21-10-53-59-81_5df84d53436283af46785041d6e85e3b](https://github.com/codingbloom/LoginFlowJetpack/assets/100596014/8fe9f667-8e1e-479c-8cfe-f59479df34e2)
+<div style="display: flex;">
+  <img src="![Screenshot-1](https://github.com/codingbloom/LoginFlowJetpack/assets/100596014/6aa7f2d1-a181-48dc-8b8c-74c8d00770cd)
+" width=30%>
+  <img src="![Screenshot-2](https://github.com/codingbloom/LoginFlowJetpack/assets/100596014/1c86ff9b-f73c-4245-a9a0-2e6549fa7866)
+" width=30%>
+</div>

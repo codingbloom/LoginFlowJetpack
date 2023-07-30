@@ -4,7 +4,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,8 +14,10 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Logout
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Policy
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
@@ -23,10 +27,14 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalDrawerSheet
+import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -53,12 +61,13 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.codingbloom.loginflowjetpack.R
+import com.codingbloom.loginflowjetpack.navigation.AppRoutes
+import com.codingbloom.loginflowjetpack.navigation.Screen
 import com.codingbloom.loginflowjetpack.ui.theme.BackgroundColor
 import com.codingbloom.loginflowjetpack.ui.theme.GrayColor
 import com.codingbloom.loginflowjetpack.ui.theme.Primary
 import com.codingbloom.loginflowjetpack.ui.theme.Secondary
 import com.codingbloom.loginflowjetpack.ui.theme.TextColor
-import com.codingbloom.loginflowjetpack.ui.theme.WhiteColor
 
 @Composable
 fun NormalTextComponent(value : String) {
@@ -394,23 +403,127 @@ fun UnderlineTextComponent(value : String) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppToolBar(toolbarTitle: String, logoutButtonClicked: () -> Unit) {
+fun AppToolBar(
+    toolbarTitle: String,
+    logoutButtonClicked: () -> Unit = {},
+    navigationIconClicked: () -> Unit = {}
+) {
 
     TopAppBar(
+        colors = TopAppBarDefaults.smallTopAppBarColors(Primary),
         title = {
-            Text(text = toolbarTitle, color = WhiteColor)
+            Text(modifier = Modifier.padding(start = 16.dp), text = toolbarTitle, color = TextColor)
         },
         navigationIcon = {
-            Icon(imageVector = Icons.Filled.Menu, contentDescription = "Menu Icon", tint = WhiteColor)
+            IconButton(
+                onClick = navigationIconClicked,
+                content = {
+                    Icon(
+                        modifier = Modifier.padding(start = 8.dp),
+                        imageVector = Icons.Filled.Menu,
+                        contentDescription = "Menu Icon",
+                        tint = TextColor
+                    )
+                }
+            )
+
         },
         actions = {
 
             IconButton(
                 onClick = logoutButtonClicked,
                 content = {
-                    Icon(imageVector = Icons.Filled.Logout, contentDescription = "Logout Icon")
+                    Icon(
+                        modifier = Modifier.padding(end = 16.dp),
+                        imageVector = Icons.Filled.Logout,
+                        contentDescription = "Logout Icon"
+                    )
                 }
             )
         }
     )
 }
+
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun AppDrawer(
+    modifier: Modifier = Modifier,
+    route: String,
+    closeDrawer: () -> Unit
+) {
+    ModalDrawerSheet(modifier = Modifier) {
+
+        NavigationDrawerHeader(modifier = modifier)
+
+        Spacer(modifier = Modifier.padding(5.dp))
+
+        NavigationDrawerBody(route = route, closeDrawer = closeDrawer)
+    }
+}
+
+@Composable
+fun NavigationDrawerHeader(modifier: Modifier) {
+
+    Box(
+        modifier = modifier
+            .background(
+                Brush.horizontalGradient(
+                    listOf(Primary, Secondary)
+                )
+            )
+            .fillMaxWidth()
+            .height(180.dp)
+            .padding(all = 32.dp)
+    ) {
+
+        HeadingTextComponent(value = stringResource(R.string.navigation_header))
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun NavigationDrawerBody(
+    route: String,
+    closeDrawer: () -> Unit
+) {
+
+    NavigationDrawerItem(
+        label = { Text(text = "Home", style = MaterialTheme.typography.labelSmall) },
+        selected = route == Screen.HomeScreenRoute.toString(),
+        onClick = {
+            closeDrawer()
+            AppRoutes.navigateTo(destination = Screen.HomeScreenRoute)
+        },
+        icon = { Icon(imageVector = Icons.Default.Home, contentDescription = "Home Icon") },
+        shape = MaterialTheme.shapes.small
+    )
+
+    NavigationDrawerItem(
+        label = { Text(text = "Terms & Policy", style = MaterialTheme.typography.labelSmall) },
+        selected = route == Screen.TermsAndConditionsScreenRoute.toString(),
+        onClick = {
+            closeDrawer()
+            AppRoutes.navigateTo(destination = Screen.TermsAndConditionsScreenRoute)
+        },
+        icon = { Icon(imageVector = Icons.Default.Policy, contentDescription = "Policy Icon") },
+        shape = MaterialTheme.shapes.small
+    )
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

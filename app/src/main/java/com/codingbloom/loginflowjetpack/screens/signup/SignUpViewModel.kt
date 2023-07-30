@@ -154,19 +154,5 @@ class SignUpViewModel : ViewModel() {
             }
     }
 
-    fun logOut(){
 
-        val firebaseAuth = FirebaseAuth.getInstance()
-
-        firebaseAuth.signOut()
-
-        val authStateListener = AuthStateListener {
-
-            if (it.currentUser == null)
-                AppRoutes.navigateTo(Screen.LoginScreenRoute)
-            else
-                Log.d(TAG, "inside_SignOut is not Complete")
-        }
-        firebaseAuth.addAuthStateListener(authStateListener)
-    }
 }

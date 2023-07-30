@@ -25,7 +25,7 @@ fun TermsAndConditionsScreen() {
     }
 
     SystemBackButtonHandler {
-        AppRoutes.navigateTo(Screen.SignUpScreenRoute)
+        AppRoutes.navigateTo(Screen.HomeScreenRoute)
     }
 }
 
